@@ -6,7 +6,7 @@ Gembas
 ChangeLog
 ---------
 * __SNAPSHOT__
-  * Initial release. (```minSdkVersion="14"```)
+  * Initial release.
 
 Developed By
 ------------
@@ -26,6 +26,12 @@ Developed By
 License
 ---------
 
-   Copyright 2015 César Díez Sánchez ![CC](http://www.msimons.nl/tools/daglicht-tabel/images/by-nc.eu.png)
+Copyright 2015 César Díez Sánchez
 
-   [Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+[Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+<a href="https://creativecommons.org/licenses/by-nc/4.0/">
+  <img alt="CC BY-NC 4.0" src="http://www.msimons.nl/tools/daglicht-tabel/images/by-nc.eu.png" />
+</a>
+
+
