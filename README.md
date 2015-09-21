@@ -5,12 +5,12 @@ Gembas
 
 ChangeLog
 ---------
-* __SNAPSHOT__
-  * Initial release.
+//* __SNAPSHOT__
+//  * Initial release.
 
 Developed By
 ------------
-* César Díez Sánchez - <cesaryomismo@gmail.com>
+//* César Díez Sánchez - <cesaryomismo@gmail.com>
 
 <a href="https://twitter.com/menorking">
   <img alt="Follow me on Twitter" src="http://imageshack.us/a/img812/3923/smallth.png" />

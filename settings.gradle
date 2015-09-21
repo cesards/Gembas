@@ -1,1 +1,1 @@
-include ':mobile', ':widgets'
+include ':mobile', ':widgets', ':domain', ':data'

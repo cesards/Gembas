@@ -1,31 +1,111 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
 
     defaultConfig {
-        applicationId "gembas.com.mobile"
-        minSdkVersion 18
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+
+        applicationId globalConfiguration.getAt("androidApplicationId")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res-place',
+            ]
         }
+    }
+
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    signingConfigs {
+        release {
+//            storeFile file(RELEASE_STORE_FILE)
+//            storePassword RELEASE_STORE_PASSWORD
+//            keyAlias RELEASE_KEY_ALIAS
+//            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            shrinkresources false
+
+            pseudoLocalesEnabled true
+            // https://github.com/dlew/android-pseudolocalization-sample
+            // https://androidbycode.wordpress.com/2015/04/19/pseudo-localization-testing-in-android/
+//            versionNameSuffix = "-SNAPSHOT"
+            applicationIdSuffix ".debug"
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+            pseudoLocalesEnabled true
+            //            if (signingConfigs.playStore != null) {
+//                signingConfig signingConfigs.playStore
+//            }
+        }
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
+//def Properties props = new Properties()
+//def propFile = file('../signing.properties')
+//if (propFile.canRead()) {
+//    props.load(new FileInputStream(propFile))
+//
+//    if (props != null && props.containsKey('SIGN_FILE') && props.containsKey('SIGN_KEYSTORE_PASS') &&
+//            props.containsKey('SIGN_KEYSTORE_ALIAS') && props.containsKey('SIGN_KEYSTORE_ALIAS_PASS')) {
+//
+//        println 'RELEASE BUILD SIGNING'
+//
+//        android.signingConfigs.playStore.storeFile = file(props['SIGN_FILE'])
+//        android.signingConfigs.playStore.storePassword = props['SIGN_KEYSTORE_PASS']
+//        android.signingConfigs.playStore.keyAlias = props['SIGN_KEYSTORE_ALIAS']
+//        android.signingConfigs.playStore.keyPassword = props['SIGN_KEYSTORE_ALIAS_PASS']
+//    } else {
+//        println 'RELEASE BUILD NOT FOUND SIGNING PROPERTIES'
+//
+//        android.buildTypes.release.signingConfig = null
+//    }
+//} else {
+//    println 'RELEASE BUILD NOT FOUND SIGNING FILE'
+//    android.buildTypes.release.signingConfig = null
+//}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.gms:play-services:7.8.0'
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile 'com.github.pedrovgs:renderers:2.0.3'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    provided "org.projectlombok:lombok:1.16.4"
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.1'
+    def mobileDependencies = rootProject.ext.mobileDependencies
+
+    compile mobileDependencies.appCompat
+    compile mobileDependencies.design
+    compile mobileDependencies.renderers
+    compile mobileDependencies.playServices
+    compile mobileDependencies.butterKnife
+    compile mobileDependencies.recyclerView
+    compile mobileDependencies.rxJava
+    compile mobileDependencies.rxAndroid
+    compile mobileDependencies.rxBinding
+    compile mobileDependencies.threeTenABP
+
+    provided mobileDependencies.lombok
 }

@@ -1,0 +1,53 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    // Android
+    androidBuildToolsVersion = "23.0.1"
+    androidMinSdkVersion = 18
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
+
+    // Libraries
+    playServicesVersion = '7.8.0'
+    butterKnifeVersion = '7.0.1'
+    recyclerViewVersion = '21.0.3'
+    rxJavaVersion = '1.0.14'
+    rxAndroidVersion = '1.0.1'
+    rxBindingVersion = '0.2.0'
+    appCompatVersion = '23.0.1'
+    renderersVersion = '2.0.3'
+    designVersion = '23.0.1'
+    threeTenABPVersion = '1.0.1'
+    lombokVersion = '1.16.4'
+
+    mobileDependencies = [
+            appCompat   : "com.android.support:appcompat-v7:${appCompatVersion}",
+            design      : "com.android.support:design:${designVersion}",
+            renderers   : "com.github.pedrovgs:renderers:${renderersVersion}",
+            playServices: "com.google.android.gms:play-services:${playServicesVersion}",
+            butterKnife : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            recyclerView: "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+            rxJava      : "io.reactivex:rxjava:${rxJavaVersion}",
+            rxAndroid   : "io.reactivex:rxandroid:${rxAndroidVersion}",
+            rxBinding   : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+            threeTenABP : "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}",
+            lombok      : "org.projectlombok:lombok:${lombokVersion}",
+    ]
+
+    domainDependencies = [
+            rxJava: "io.reactivex:rxjava:${rxJavaVersion}",
+            lombok: "org.projectlombok:lombok:${lombokVersion}",
+    ]
+
+    dataDependencies = [
+            rxJava   : "io.reactivex:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex:rxandroid:${rxAndroidVersion}",
+            lombok   : "org.projectlombok:lombok:${lombokVersion}",
+    ]
+
+
+}
