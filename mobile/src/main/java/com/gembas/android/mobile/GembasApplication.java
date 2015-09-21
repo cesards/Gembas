@@ -1,4 +1,4 @@
-package gembas.com.mobile;
+package com.gembas.android.mobile;
 
 import android.app.Application;
 

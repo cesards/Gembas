@@ -1,4 +1,4 @@
-package gembas.com.mobile;
+package com.gembas.android.mobile;
 
 import android.app.Fragment;
 import android.os.Bundle;
