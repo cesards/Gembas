@@ -23,6 +23,9 @@ ext {
     designVersion = '23.0.1'
     threeTenABPVersion = '1.0.1'
     lombokVersion = '1.16.4'
+    retrofit2Version = '2.0.0-beta1'
+    retrofitConverterGsonVersion = '2.0.0-beta1'
+    retrofitAdapterRxJavaVersion = '2.0.0-beta1'
 
     mobileDependencies = [
             appCompat   : "com.android.support:appcompat-v7:${appCompatVersion}",
@@ -47,6 +50,9 @@ ext {
             rxJava   : "io.reactivex:rxjava:${rxJavaVersion}",
             rxAndroid: "io.reactivex:rxandroid:${rxAndroidVersion}",
             lombok   : "org.projectlombok:lombok:${lombokVersion}",
+            retrofit2: "com.squareup.retrofit:retrofit:${retrofit2Version}",
+            retrofitConverterGson: "com.squareup.retrofit:converter-gson:${retrofitConverterGsonVersion}",
+            retrofitAdapterRxJava: "com.squareup.retrofit:adapter-rxjava:${retrofitAdapterRxJavaVersion}"
     ]
 
 

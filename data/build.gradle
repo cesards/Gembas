@@ -19,8 +19,15 @@ android {
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
 
+    def domainLayer = project(':domain')
+
+    compile domainLayer
+
     compile dataDependencies.rxJava
     compile dataDependencies.rxAndroid
+    compile dataDependencies.retrofit2
+    compile dataDependencies.retrofitConverterGson
+    compile dataDependencies.retrofitAdapterRxJava
 
     provided dataDependencies.lombok
 }

@@ -42,7 +42,7 @@ android {
 
     buildTypes {
         debug {
-            shrinkresources false
+            shrinkResources false
 
             pseudoLocalesEnabled true
             // https://github.com/dlew/android-pseudolocalization-sample
@@ -95,6 +95,12 @@ android {
 
 dependencies {
     def mobileDependencies = rootProject.ext.mobileDependencies
+
+    def domainLayer = project(':domain')
+    def dataLayer = project(':data')
+
+    compile domainLayer
+    compile dataLayer
 
     compile mobileDependencies.appCompat
     compile mobileDependencies.design
