@@ -1,4 +1,3 @@
 include ':mobile'
-include ':widgets'
 include ':domain'
 include ':data'
