@@ -1,59 +1,56 @@
 allprojects {
-    repositories {
-        jcenter()
-    }
+  repositories {
+    jcenter()
+  }
 }
 
 ext {
-    // Android
-    androidBuildToolsVersion = "23.0.1"
-    androidMinSdkVersion = 18
-    androidTargetSdkVersion = 23
-    androidCompileSdkVersion = 23
+  // Android
+  androidBuildToolsVersion = "23.0.1"
+  androidMinSdkVersion = 18
+  androidTargetSdkVersion = 23
+  androidCompileSdkVersion = 23
 
-    // Libraries
-    playServicesVersion = '7.8.0'
-    butterKnifeVersion = '7.0.1'
-    recyclerViewVersion = '21.0.3'
-    rxJavaVersion = '1.0.14'
-    rxAndroidVersion = '1.0.1'
-    rxBindingVersion = '0.2.0'
-    appCompatVersion = '23.0.1'
-    renderersVersion = '2.0.3'
-    designVersion = '23.0.1'
-    threeTenABPVersion = '1.0.1'
-    lombokVersion = '1.16.4'
-    retrofit2Version = '2.0.0-beta1'
-    retrofitConverterGsonVersion = '2.0.0-beta1'
-    retrofitAdapterRxJavaVersion = '2.0.0-beta1'
+  // Libraries - Presentation Layer
+  systemUIHelperVersion = '1.0.0'
 
-    mobileDependencies = [
-            appCompat   : "com.android.support:appcompat-v7:${appCompatVersion}",
-            design      : "com.android.support:design:${designVersion}",
-            renderers   : "com.github.pedrovgs:renderers:${renderersVersion}",
-            playServices: "com.google.android.gms:play-services:${playServicesVersion}",
-            butterKnife : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            recyclerView: "com.android.support:recyclerview-v7:${recyclerViewVersion}",
-            rxJava      : "io.reactivex:rxjava:${rxJavaVersion}",
-            rxAndroid   : "io.reactivex:rxandroid:${rxAndroidVersion}",
-            rxBinding   : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
-            threeTenABP : "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}",
-            lombok      : "org.projectlombok:lombok:${lombokVersion}",
-    ]
+  playServicesVersion = '8.3.0'
+  butterKnifeVersion = '7.0.1'
+  recyclerViewVersion = '21.0.3'
+  rxJavaVersion = '1.0.14'
+  rxAndroidVersion = '1.0.1'
+  rxBindingVersion = '0.2.0'
+  appCompatVersion = '23.0.1'
+  renderersVersion = '2.0.3'
+  designVersion = '23.0.1'
+  threeTenABPVersion = '1.0.1'
+  lombokVersion = '1.16.4'
+  retrofit2Version = '2.0.0-beta1'
+  retrofitConverterGsonVersion = '2.0.0-beta1'
+  retrofitAdapterRxJavaVersion = '2.0.0-beta1'
 
-    domainDependencies = [
-            rxJava: "io.reactivex:rxjava:${rxJavaVersion}",
-            lombok: "org.projectlombok:lombok:${lombokVersion}",
-    ]
+  mobileDependencies = [appCompat           : "com.android.support:appcompat-v7:${appCompatVersion}",
+                        design              : "com.android.support:design:${designVersion}",
+                        systemUIHelper      : "me.zhanghai.android.systemuihelper:library:${systemUIHelperVersion}",
+                        renderers           : "com.github.pedrovgs:renderers:${renderersVersion}",
+                        playServicesBase    : "com.google.android.gms:play-services-base:${playServicesVersion}",
+                        playServicesLocation: "com.google.android.gms:play-services-location:${playServicesVersion}",
+                        playServicesMaps    : "com.google.android.gms:play-services-maps:${playServicesVersion}",
+                        butterKnife         : "com.jakewharton:butterknife:${butterKnifeVersion}",
+                        recyclerView        : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+                        rxJava              : "io.reactivex:rxjava:${rxJavaVersion}",
+                        rxAndroid           : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                        rxBinding           : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+                        threeTenABP         : "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}",
+                        lombok              : "org.projectlombok:lombok:${lombokVersion}",]
 
-    dataDependencies = [
-            rxJava   : "io.reactivex:rxjava:${rxJavaVersion}",
-            rxAndroid: "io.reactivex:rxandroid:${rxAndroidVersion}",
-            lombok   : "org.projectlombok:lombok:${lombokVersion}",
-            retrofit2: "com.squareup.retrofit:retrofit:${retrofit2Version}",
-            retrofitConverterGson: "com.squareup.retrofit:converter-gson:${retrofitConverterGsonVersion}",
-            retrofitAdapterRxJava: "com.squareup.retrofit:adapter-rxjava:${retrofitAdapterRxJavaVersion}"
-    ]
+  domainDependencies = [rxJava: "io.reactivex:rxjava:${rxJavaVersion}",
+                        lombok: "org.projectlombok:lombok:${lombokVersion}",]
 
-
+  dataDependencies = [rxJava               : "io.reactivex:rxjava:${rxJavaVersion}",
+                      rxAndroid            : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                      lombok               : "org.projectlombok:lombok:${lombokVersion}",
+                      retrofit2            : "com.squareup.retrofit:retrofit:${retrofit2Version}",
+                      retrofitConverterGson: "com.squareup.retrofit:converter-gson:${retrofitConverterGsonVersion}",
+                      retrofitAdapterRxJava: "com.squareup.retrofit:adapter-rxjava:${retrofitAdapterRxJavaVersion}"]
 }

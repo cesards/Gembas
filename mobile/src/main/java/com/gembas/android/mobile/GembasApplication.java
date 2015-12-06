@@ -6,13 +6,13 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class GembasApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initThreeTenTime();
-    }
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    initThreeTenTime();
+  }
 
-    private void initThreeTenTime() {
-        AndroidThreeTen.init(this);
-    }
+  private void initThreeTenTime() {
+    AndroidThreeTen.init(this);
+  }
 }

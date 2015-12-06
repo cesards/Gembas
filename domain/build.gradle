@@ -1,18 +1,38 @@
-apply plugin: 'java'
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.getkeepsafe.dexcount'
 
-//noinspection GroovyUnusedAssignment
-sourceCompatibility = 1.8
-//noinspection GroovyUnusedAssignment
-targetCompatibility = 1.8
+dexcount {
+  printAsTree = true
+  orderByMethodCount = true
+}
 
-configurations {
-    provided
+android {
+  def globalConfiguration = rootProject.extensions.getByName("ext")
+
+  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+  defaultConfig {
+    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+
+    versionCode globalConfiguration.getAt("androidVersionCode")
+    versionName globalConfiguration.getAt("androidVersionName")
+  }
+
+  compileOptions {
+    encoding "UTF-8"
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
 }
 
 dependencies {
-    def domainDependencies = rootProject.ext.domainDependencies
+  def domainDependencies = rootProject.ext.domainDependencies
 
-    compile domainDependencies.rxJava
+  compile domainDependencies.rxJava
 
-    provided domainDependencies.lombok
+  provided domainDependencies.lombok
 }

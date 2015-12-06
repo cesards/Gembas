@@ -1,73 +1,79 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+dexcount {
+  printAsTree = true
+  orderByMethodCount = true
+}
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
+  def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
-    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
 
-    defaultConfig {
-        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
-        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+  defaultConfig {
+    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
 
-        applicationId globalConfiguration.getAt("androidApplicationId")
-        versionCode globalConfiguration.getAt("androidVersionCode")
-        versionName globalConfiguration.getAt("androidVersionName")
+    applicationId globalConfiguration.getAt("androidApplicationId")
+    versionCode globalConfiguration.getAt("androidVersionCode")
+    versionName globalConfiguration.getAt("androidVersionName")
+  }
+
+  sourceSets {
+    main {
+      res.srcDirs = ['src/main/res',
+                     'src/main/res-place',]
     }
+  }
 
-    sourceSets {
-        main {
-            res.srcDirs = [
-                    'src/main/res',
-                    'src/main/res-place',
-            ]
-        }
+  packagingOptions {
+    exclude 'LICENSE.txt'
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+  }
+
+  signingConfigs {
+    release {
+      //            storeFile file(RELEASE_STORE_FILE)
+      //            storePassword RELEASE_STORE_PASSWORD
+      //            keyAlias RELEASE_KEY_ALIAS
+      //            keyPassword RELEASE_KEY_PASSWORD
     }
+  }
 
+  buildTypes {
+    debug {
+      shrinkResources false
 
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
+      pseudoLocalesEnabled true
+      // https://github.com/dlew/android-pseudolocalization-sample
+      // https://androidbycode.wordpress.com/2015/04/19/pseudo-localization-testing-in-android/
+      //            versionNameSuffix = "-SNAPSHOT"
+//      applicationIdSuffix ".debug"
     }
-
-    signingConfigs {
-        release {
-//            storeFile file(RELEASE_STORE_FILE)
-//            storePassword RELEASE_STORE_PASSWORD
-//            keyAlias RELEASE_KEY_ALIAS
-//            keyPassword RELEASE_KEY_PASSWORD
-        }
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      //            signingConfig signingConfigs.release
+      pseudoLocalesEnabled true
+      //            if (signingConfigs.playStore != null) {
+      //                signingConfig signingConfigs.playStore
+      //            }
     }
+  }
 
-    buildTypes {
-        debug {
-            shrinkResources false
+  compileOptions {
+    encoding "UTF-8"
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 
-            pseudoLocalesEnabled true
-            // https://github.com/dlew/android-pseudolocalization-sample
-            // https://androidbycode.wordpress.com/2015/04/19/pseudo-localization-testing-in-android/
-//            versionNameSuffix = "-SNAPSHOT"
-            applicationIdSuffix ".debug"
-        }
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
-            pseudoLocalesEnabled true
-            //            if (signingConfigs.playStore != null) {
-//                signingConfig signingConfigs.playStore
-//            }
-        }
-    }
-
-    compileOptions {
-        encoding "UTF-8"
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
+
+
 
 //def Properties props = new Properties()
 //def propFile = file('../signing.properties')
@@ -94,24 +100,29 @@ android {
 //}
 
 dependencies {
-    def mobileDependencies = rootProject.ext.mobileDependencies
+  def mobileDependencies = rootProject.ext.mobileDependencies
 
-    def domainLayer = project(':domain')
-    def dataLayer = project(':data')
+  def domainLayer = project(':domain')
+  def dataLayer = project(':data')
+  //    def commons = project(':commons')
 
-    compile domainLayer
-    compile dataLayer
+  compile domainLayer
+  compile dataLayer
+  //    compile commons
 
-    compile mobileDependencies.appCompat
-    compile mobileDependencies.design
-    compile mobileDependencies.renderers
-    compile mobileDependencies.playServices
-    compile mobileDependencies.butterKnife
-    compile mobileDependencies.recyclerView
-    compile mobileDependencies.rxJava
-    compile mobileDependencies.rxAndroid
-    compile mobileDependencies.rxBinding
-    compile mobileDependencies.threeTenABP
+  compile mobileDependencies.systemUIHelper
+  compile mobileDependencies.playServicesBase
+  compile mobileDependencies.playServicesLocation
+  compile mobileDependencies.playServicesMaps
+  compile mobileDependencies.appCompat
+  compile mobileDependencies.design
+  compile mobileDependencies.renderers
+  compile mobileDependencies.butterKnife
+  compile mobileDependencies.recyclerView
+  compile mobileDependencies.rxJava
+  compile mobileDependencies.rxAndroid
+  compile mobileDependencies.rxBinding
+  compile mobileDependencies.threeTenABP
 
-    provided mobileDependencies.lombok
+  provided mobileDependencies.lombok
 }

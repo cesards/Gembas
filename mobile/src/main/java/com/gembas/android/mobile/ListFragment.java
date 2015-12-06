@@ -14,25 +14,25 @@ import butterknife.ButterKnife;
 
 public class ListFragment extends Fragment {
 
-    @Bind(R.id.list)
-    RecyclerView list;
+  @Bind(R.id.list)
+  RecyclerView list;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_list, container, false);
-        ButterKnife.bind(this, view);
-        return view;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.fragment_list, container, false);
+    ButterKnife.bind(this, view);
+    return view;
+  }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initList();
-    }
+  @Override
+  public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    initList();
+  }
 
-    private void initList() {
-        list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        list.setHasFixedSize(true);
-    }
+  private void initList() {
+    list.setLayoutManager(new LinearLayoutManager(getActivity()));
+    list.setHasFixedSize(true);
+  }
 }

@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2014 android10.org. All rights reserved.
+ *
  * @author Fernando Cejas (the android10 coder)
  */
 package com.gembas.android.domain.base.executor;
@@ -12,5 +13,5 @@ import rx.Scheduler;
  * implementation of this interface will change context and update the UI.
  */
 public interface PostExecutionThread {
-    Scheduler getScheduler();
+  Scheduler getScheduler();
 }

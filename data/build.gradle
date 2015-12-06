@@ -1,33 +1,46 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+dexcount {
+  printAsTree = true
+  orderByMethodCount = true
+}
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
+  def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
-    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
 
-    defaultConfig {
-        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
-        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+  defaultConfig {
+    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
 
-        versionCode globalConfiguration.getAt("androidVersionCode")
-        versionName globalConfiguration.getAt("androidVersionName")
-    }
+    versionCode globalConfiguration.getAt("androidVersionCode")
+    versionName globalConfiguration.getAt("androidVersionName")
+  }
+
+  compileOptions {
+    encoding "UTF-8"
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
 }
 
 dependencies {
-    def dataDependencies = rootProject.ext.dataDependencies
+  def dataDependencies = rootProject.ext.dataDependencies
 
-    def domainLayer = project(':domain')
+  def domainLayer = project(':domain')
 
-    compile domainLayer
+  compile domainLayer
 
-    compile dataDependencies.rxJava
-    compile dataDependencies.rxAndroid
-    compile dataDependencies.retrofit2
-    compile dataDependencies.retrofitConverterGson
-    compile dataDependencies.retrofitAdapterRxJava
+  compile dataDependencies.rxJava
+  compile dataDependencies.rxAndroid
+  compile dataDependencies.retrofit2
+  compile dataDependencies.retrofitConverterGson
+  compile dataDependencies.retrofitAdapterRxJava
 
-    provided dataDependencies.lombok
+  provided dataDependencies.lombok
 }
